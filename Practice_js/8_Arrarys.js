@@ -92,3 +92,23 @@ console.log("\n")
 //13. Reverse an array.
 
 console.log(myarr.reverse());
+
+//14. Remove duplicate values from an array.
+
+let arr1 = [1,1,2,2,4,3,5,5]
+
+let duplicatearr = [...new Set(arr1)]
+console.log(duplicatearr);
+console.log("\n")
+
+//15. Find the index of an element using indexOf.
+
+let arr15 = [1,2,3,4,5]
+console.log(arr15.indexOf(3));
+console.log("\n");
+
+//16. Remove an element from an array by value (not index).
+
+arr15 = arr15.filter(value => value !== 2)
+console.log(arr15);
+
