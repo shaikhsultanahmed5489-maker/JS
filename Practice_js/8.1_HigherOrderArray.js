@@ -34,6 +34,7 @@ const numbers = [1,2,5,10]
 
 const binarynumbers = numbers.map(num => num.toString(2))
 console.log(binarynumbers);
+console.log("\n");
 
 //FILTER
 
@@ -41,4 +42,7 @@ console.log(binarynumbers);
 
 let arr3=[10,28,55,32,87]
 
-const fil
+const filtered = arr3.filter (num => num > 50)
+
+console.log(filtered)
+console.log("\n");
