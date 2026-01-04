@@ -46,3 +46,29 @@ const filtered = arr3.filter (num => num > 50)
 
 console.log(filtered)
 console.log("\n");
+
+//4.	Filter only even numbers.
+
+const even = arr3.filter (num => num % 2 === 0)
+console.log(even);
+console.log("\n");
+
+//REDUCE
+
+// 5.	Sum all numbers.
+
+let arr = [1,2,3,4]
+
+const sum = arr.reduce((total,num) => total + num , 0)
+console.log(sum);
+console.log("\n");
+
+//forEach
+
+//7.	Print every element with index.
+
+arr1.forEach((Element,i) => {
+    console.log(`Index ${i}: Element ${Element}`);
+    
+})
+
