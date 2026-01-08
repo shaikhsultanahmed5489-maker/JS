@@ -96,6 +96,7 @@ function withdrawn(balance,amount) {
 
 }
 withdrawn(100,50)
+console.log("\n");
 
 //7.	Control logic based on a "loading" | "error" | "success" state.
 
@@ -111,3 +112,99 @@ function showStatus(state) {
 showStatus("loading");
 showStatus("error");
 showStatus("success");
+console.log("\n");
+
+//8.	Use return to stop execution at the correct time.
+
+function checkage(age){
+    if(age < 0){
+        return "Invalid age"
+    }
+    return age >= 18 ? "Adult" : "Minor"
+}
+console.log(checkage(5));
+console.log("\n");
+
+//9.	Convert a simple if/else to a ternary only if readability improves.
+
+let isLoggendIn = true
+let message = isLoggendIn ? "Welcome Back" : "Please Log in";
+
+console.log(message);
+console.log("\n");
+
+//11.	Break a complex condition into named variables.
+
+let age1 = 25;
+let isCitizen = true;
+let hasLicense = true;
+
+let isAdult = age1 >= 18 && age1 <= 60;
+let isEligibleCitizen = isCitizen === true;
+let hasValidLicense = hasLicense === true;
+
+if (isAdult && isEligibleCitizen && hasValidLicense) {
+    console.log("You are Eligible to Drive");
+}
+console.log("\n");
+
+//12.	Use switch(true) to group complex conditional logic.
+let age2 = 12;
+let category;
+switch (true) {
+    case age2 < 13:
+        category = "Child";
+        break;
+
+    case age2 >= 13 && age2 < 18:
+        category = "Teen";
+        break;
+
+    case age2 >= 18 && age2 <= 60:
+        category = "Adult";
+        break;
+
+    default:
+        category = "Senior";
+}
+console.log(category);
+
+function getDiscount(price, isMember) {
+    switch (true) {
+        case price >= 1000 && isMember:
+            return "30% discount";
+
+        case price >= 1000:
+            return "20% discount";
+
+        case price >= 500:
+            return "10% discount";
+
+        default:
+            return "No discount";
+    }
+}
+
+console.log(getDiscount(1200, true));
+
+console.log("\n")
+
+//13.	Flatten deeply nested logic using early returns.
+function login(user) {
+    if (!user) return "No user";
+    if (!user.isActive) return "Inactive user";
+    if (user.role !== "admin") return "Not admin";
+
+    return "Access granted";
+}
+console.log(login(null));
+console.log(login({ isActive: false, role: "admin" }));
+console.log(login({ isActive: true, role: "user" }));
+console.log(login({ isActive: true, role: "admin" }));
+console.log("\n");
+
+//14.	Use nullish coalescing (??) to provide safe defaults without overriding valid falsy values.
+let count = 0;
+let result1 = count ?? 10;
+
+console.log(result1);
