@@ -74,3 +74,4 @@ const greeter = (() => {
 })();
 
 greeter(" Sultan")
+
