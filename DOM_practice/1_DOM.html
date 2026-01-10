@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM practice</title>
+</head>
+<body class="bg-black">
+ 
+        <!-- <p id="message">hello World</p> -->
+        <p><strong>1.</strong> <span id="message">Demo text</span></p>
+
+        <p><strong>2.</strong></p>
+
+        <div id="count">
+            <ol>
+                <li class="list-item">one</li>
+                <li class="list-item">two</li>
+                <li class="list-item">three</li>
+            </ol>
+        </div>
+
+        <div id="count-Output"></div>
+
+
+    <script>
+        //1.	Select an element by ID and change its text.
+        const element1 = document.getElementById("message")
+        element1.textContent = "Hello Javascript"
+
+       
+        // 2. Select all elements with a given class and log their count
+        const element2 = document.getElementsByClassName("list-item");
+        console.log(element2.length); // Output: 3
+        document.getElementById("count-Output").textContent = `Count: ${element2.length}`;
+
+    </script>
+</body>
+</html>
