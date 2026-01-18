@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Content VS HTML</title>
+</head>
+<body>
+    
+    <p id = "setText"></p>
+    <p id = "setText2"></p>
+
+    <p id="container"></p>
+
+    <div id="AdjustHTML">
+    <p>Existing content</p>
+    </div>
+
+    <p id="p1"></p>
+    <p id = "textChecker"></p>
+
+
+    <script>
+        //1.	Set text using innerText.
+        const setText = document.getElementById("setText")
+        setText.innerText = "1. Text with .innerText";
+
+        //2.	Set text using textContent.
+        const setText2 = document.getElementById("setText2")
+        setText2.textContent = "2. Text with .textContent"
+
+        //3.	Insert HTML using innerHTML.
+        const inserthtml = document.querySelector("#container");
+        inserthtml.innerHTML = "<p>3. This is from .innerHTML</p>"
+
+        //4.	Append HTML without overwriting existing content.
+        const adjustHTML = document.querySelector("#AdjustHTML");
+        adjustHTML.insertAdjacentHTML("beforeend", "<p>4.  After adjusted </p>");
+
+        // "beforebegin"  // before the element itself
+        // "afterbegin"   // inside, at the start
+        // "beforeend"    // inside, at the end ⭐
+        // "afterend"     // after the element itself
+
+        //         | Position    | Meaning                  |
+        // | ----------- | ------------------------ |
+        // | beforebegin | Outside – before element |
+        // | afterbegin  | Inside – top             |
+        // | beforeend   | Inside – bottom          |
+        // | afterend    | Outside – after element  |
+
+        //5.	Copy text from one element to another.
+        const el1 = document.getElementById("p1")
+        el1.textContent = setText2.textContent 
+        inserthtml.after(el1)
+
+        //6.	Clear content of an element safely.
+        el1.textContent = "";
+
+        // 7. Insert text using createTextNode()
+        const parent = document.querySelector("#container")
+
+        const textNode = document.createTextNode("7. text Added using textNode")
+
+        parent.appendChild(textNode);
+
+
+        //8.	Detect whether an element contains HTML or plain text.
+
+        const checker = document.getElementById("textChecker");
+
+        if (setText.innerHTML !== setText.textContent) {
+            checker.textContent = "8. Contains HTML";
+        } else {
+            checker.textContent = "8. Contains plain text";
+        }
+
+
+    </script>
+
+</body>
+</html>
