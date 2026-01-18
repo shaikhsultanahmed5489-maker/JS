@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging & Observations</title>
+</head>
+<body>
+
+    <div></div>
+
+    <div class="box"></div>
+
+    <div id="container">
+    <p class="text">Hello World</p>
+
+
+
+
+    <div id="box1">Box 1</div>
+<div id="box2">Box 2</div>
+
+
+
+
+
+</div>
+
+    <script>
+        //1.	Log a NodeList and inspect its prototype.
+        //6.	Use console.dir() on a DOM element.
+        const nodes = document.querySelector('div')
+        console.log(nodes)
+        console.log(Object.getPrototypeOf(nodes))
+
+        //2.	Log an HTMLCollection and compare it with NodeList.
+        const divsByClass = document.getElementsByClassName('box');
+        console.log(divsByClass);
+        console.dir(divsByClass);
+
+        const divsByQuery = document.querySelectorAll('.box');
+        console.log(divsByQuery);
+        console.dir(divsByQuery);
+
+
+
+
+
+
+
+//3.	Modify DOM and observe live changes in DevTools.
+
+        const container = document.getElementById("container");
+const para = document.querySelector(".text");
+
+// Modify text
+para.textContent = "Text updated via DOM";
+
+// Modify style
+para.style.color = "red";
+
+// Add a new element
+const newSpan = document.createElement("span");
+newSpan.textContent = " (New element added)";
+container.appendChild(newSpan);
+
+// Modify attribute
+para.setAttribute("data-status", "updated");
+
+
+
+
+//4.	Observe what happens when you append the same element twice.
+const box1 = document.getElementById("box1");
+const box2 = document.getElementById("box2");
+
+// Create ONE element
+const span = document.createElement("span");
+span.textContent = "I am a span";
+
+// Append first time
+box1.appendChild(span);
+
+// Append same element again
+box2.appendChild(span);
+
+
+
+
+
+//5.	Try selecting elements before DOM loads — observe error.
+
+
+    </script>
+    
+</body>
+</html>
