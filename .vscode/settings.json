@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/DOM_practice/1_DOM.html"
+    "livePreview.defaultPreviewPath": "/DOM_practice/1_DOM.html",
+    "liveServer.settings.port": 5501
 }
