@@ -49,7 +49,7 @@ const promiseFour = new Promise(function(resolve, reject){
 
 const promiseFive = new Promise(function(resolve, reject){
     setTimeout(function(){
-        let error = true
+        let error = true;
         if (!error) {
             resolve({username: "javascript", password: "123"})
         } else {
@@ -68,3 +68,98 @@ async function consumePromiseFive(){
 }
 
 consumePromiseFive();
+
+
+
+//----------------------------------------
+
+
+//          Practice
+
+
+//1.	Create a Promise that resolves after 2 seconds.
+
+const p1 = new Promise(function(resolve,reject) {
+    setTimeout(() => {
+  resolve("Promise resolved after 2 seconds");        
+        
+    }, 2000);
+})
+
+p1.then((message) => {
+  console.log(message);
+});
+
+
+
+//2.	Create a Promise that rejects based on a condition.
+//3.	Handle a rejected Promise safely without crashing the app.
+
+const conditionalPromise = new Promise((resolve, reject) => {
+  let success = false; // change to true to resolve
+
+  if (success) {
+    resolve("Operation successful ✅");
+  } else {
+    reject("Operation failed ❌");
+  }
+});
+
+
+conditionalPromise
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  console.log("App still running without any crash");
+  
+
+//  4.	Demonstrate what happens when a Promise is neither resolved nor rejected.
+
+const promise4 = new Promise((resolve,reject) => {
+
+});
+
+promise4
+.then((msg) => {
+    console.log("accepted");
+})
+.catch((err) => {
+    console.log("denied");
+})
+
+console.log("end");
+
+//5.	Show what happens when you forget to return a Promise inside .then().
+
+const promise5 = new Promise((resolve) => {
+  resolve("Step 1 completed ✅");
+});
+
+promise5
+  .then((msg) => {
+    console.log(msg);
+
+    // ❌ Forgot to return the Promise
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Step 2 completed ❌");
+      }, 2000);
+    });
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log("error", err);
+  });
+
+console.log("end 5");
+
+
+
+
+
