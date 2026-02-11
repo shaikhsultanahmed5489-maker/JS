@@ -85,7 +85,6 @@ getData().then((data) => {
 });
 
 
-
 //6.	A function that returns a Promise with setTimeout.
 
 function delayMessage() {
@@ -387,3 +386,5 @@ async function greet() {
 
 const result = greet();
 console.log(result);
+
+
