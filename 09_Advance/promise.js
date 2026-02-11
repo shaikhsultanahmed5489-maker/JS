@@ -162,4 +162,54 @@ console.log("end 5");
 
 
 
+//6. Demonstarte a unhandled rejection.
+
+function rejectPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      
+      reject("Something rejected")
+    }, 1000);
+  })
+}
+
+
+async function Executor() {
+  try {
+  const promise6 = await rejectPromise();
+
+  console.log(promise6);
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+Executor();
+
+
+//7.. Demonstrate resolve vs reject being called twice 
+
+const promiseResolve = new Promise((resolve) => {
+  resolve("First resolve")
+  resolve("second resolve")
+})
+
+promiseResolve.then(value => {
+  console.log("Resolved with:", value);
+  
+})
+
+
+const promiseReject = new Promise((_,reject) => {
+  reject("reject resolve")
+  reject("reject resolve")
+})
+
+promiseReject.catch(value => {
+  console.log("reject with:", value);
+  
+})
+
+ 
 
