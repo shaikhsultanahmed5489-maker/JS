@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async + Event</title>
+</head>
+<body>
+    <!--1.-->
+    <button id="btn">1. Check Browser</button>
+    <hr>
+    
+    <!--2-->
+    <form id="myForm">
+        <input type="text" placeholder="type Something">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="output2"></p><hr>
+
+    <!--3-->
+    <button id="multibtn">Click me</button>
+    <p id="output3"></p><hr>
+
+    <!--4-->
+    <form id="loginForm">
+        <input type="text" placeholder="username">
+        <button id="loginbtn" type="submit">Login</button>
+    </form>
+</body>
+<script>
+    //1.	Create an async click handler that throws — observe browser behavior.
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener("click", async () => {
+        console.log("Handler started");
+        
+        await new Promise(resolve =>setTimeout(resolve, 1000));
+
+        throw new Error("Async error occured");
+    });
+
+
+//2.	Place preventDefault() after async logic and compare results.
+    const form = document.getElementById("myForm");
+    const output2 = document.getElementById("output2");
+
+    form.addEventListener("submit", async (e) => {
+        output2.textContent = "Handler Started";
+                
+        await new Promise(resolve => setTimeout(resolve, 200000));
+
+        e.preventDefault();
+
+        output2.textContent = `prevent Default called`;
+        
+    })
+
+
+//3.	Attach multiple listeners to the same event and trigger overlapping async calls.
+    const btn3 = document.getElementById("multibtn");
+    const output3 = document.getElementById("output3");
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    btn3.addEventListener("click", async () => {
+        console.log("Listener 1 start");
+        await delay(2000);
+        console.log("Listener 1 end");
+    })
+    btn3.addEventListener("click", async () => {
+        console.log("Listener 2 start");
+        await delay(1000);
+        console.log("Listener 2 end");
+    })
+
+//4.	Trigger async logic from both submit and click events unintentionally.
+    const form4 = document.getElementById("loginForm");
+    const btn4 = document.getElementById("loginBtn");
+
+    function delay(ms) {
+        return new Promise(res => setTimeout(res, ms));
+    }
+
+    async function sendData() {
+        console.log("Sending request...");
+        await delay(1000);
+        console.log("Request completed");
+    }
+
+    // submit event
+    form4.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await sendData();
+    });
+
+    // click event
+    btn4.addEventListener("click", async () => {
+        await sendData();
+    });
+
+</script>
+</html>
